@@ -92,3 +92,16 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 "Install suggested plugins", "Select plugins to install"에서 우선 "Install suggested plugins"을 설치
 </pre>
 
+7. First Admin User 생성
+<pre>
+계정명 : admin
+암호 : wkfgkwk
+암호확인: wkfgkwk
+이름: administrator
+이메일주소: sckim007@gmail.com
+</pre>
+
+8. Jenkins 시작
+<pre>
+"Start using Jenkins" 버튼 클릭
+</pre>
