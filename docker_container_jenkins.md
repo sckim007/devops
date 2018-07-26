@@ -24,7 +24,7 @@ CONTAINER ID        IMAGE   ...STATUS              PORTS                        
 ...
 </pre>
 
-4. 브라우저로 접속
+3. 브라우저로 접속
 <pre>
 Unlock Jenkins
 To ensure Jenkins is securely set up by the administrator, a password has been written to the log (not sure where to find it?) and this file on the server:
@@ -41,7 +41,7 @@ docker exec jenkins-dind2 cat /var/jenkins_home/secrets/initialAdminPassword
 43d2879a97cf46eab12d301044b803fa
 </pre>
 
-5. jenkins 로그를 확인해 보자.
+4. jenkins 로그를 확인해 보자.
 <pre>
 docker logs jenkins
 Running from: /usr/share/jenkins/jenkins.war
@@ -67,12 +67,12 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 
 출력된 비밀번호를 웹페이지의 "Administrator password"란에 복사한다.
 
-6. 플러그인 설치
+5. 플러그인 설치
 <pre>
 "Install suggested plugins", "Select plugins to install"에서 우선 "Install suggested plugins"을 설치
 </pre>
 
-7. First Admin User 생성
+6. First Admin User 생성
 <pre>
 계정명 : admin
 암호 : wkfgkwk
@@ -84,4 +84,32 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 8. Jenkins 시작
 <pre>
 "Start using Jenkins" 버튼 클릭
+</pre>
+
+
+<h1>Docker in Docker 설치 </h1>
+jenkins에 접속
+<pre>
+docker exec -it -u root jenkins bash
+</pre>
+
+<pre>
+apt-get update && \
+apt-get -y install apt-transport-https \
+ca-certificates \
+curl \
+gnupg2 \
+software-properties-common && \
+curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+$(lsb_release -cs) \
+stable" && \
+apt-get update && \
+apt-get -y install docker-ce
+</pre>
+
+서비스로 docker를 시작
+<pre>
+service docker start
 </pre>
